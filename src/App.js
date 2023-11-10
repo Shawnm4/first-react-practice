@@ -25,8 +25,13 @@ function Counter() {
     setIncrement((i) => i + 1);
   }
   function changeIncrementDown() {
-    setIncrement((i) => i - 1);
+    if (increment >= 1) setIncrement((i) => i - 1);
   }
+
+  // function reset() {
+  //   setIncrement((i) => (i = increment));
+  //   setcountDis((c) => (c = countDis));
+  // }
 
   return (
     <div>
@@ -49,7 +54,7 @@ function Counter() {
           <button onClick={changeIncrementUp}>+</button>
         </span>
       </div>
-
+      {/* <button onClick={reset}>RESET</button> */}
       <p> {countDis}</p>
     </div>
   );
