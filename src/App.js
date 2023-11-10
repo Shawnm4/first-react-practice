@@ -13,19 +13,24 @@ function Counter() {
   const [increment, setIncrement] = useState(1);
   const [countDis, setcountDis] = useState(0);
 
-  function addNum() {
+  function handleAddNum() {
     setcountDis((count) => countDis + increment);
   }
 
-  function subNum() {
+  function handleSubNum() {
     setcountDis((count) => countDis - increment);
   }
 
-  function changeIncrementUp() {
+  function handleIncrementUp() {
     setIncrement((i) => i + 1);
   }
-  function changeIncrementDown() {
+  function handleIncrementDown() {
     if (increment >= 1) setIncrement((i) => i - 1);
+  }
+
+  function handleReset() {
+    setIncrement(1);
+    setcountDis(0);
   }
 
   // function reset() {
@@ -38,24 +43,25 @@ function Counter() {
       <div>
         <span>
           {" "}
-          <button onClick={subNum}>-</button>{" "}
+          <button onClick={handleSubNum}>-</button>{" "}
         </span>
         <span>Subtract Or Add</span>
         <span>
-          <button onClick={addNum}> + </button>{" "}
+          <button onClick={handleAddNum}> + </button>{" "}
         </span>
       </div>
       <div>
         <span>
-          <button onClick={changeIncrementDown}>-</button>
+          <button onClick={handleIncrementDown}>-</button>
         </span>
         <span>Increment:{increment} </span>
         <span>
-          <button onClick={changeIncrementUp}>+</button>
+          <button onClick={handleIncrementUp}>+</button>
         </span>
       </div>
       {/* <button onClick={reset}>RESET</button> */}
       <p> {countDis}</p>
+      <button onClick={handleReset}>RESET</button>
     </div>
   );
 }
