@@ -12,34 +12,47 @@ function App() {
 function Counter() {
   const [increment, setIncrement] = useState(1);
   const [countDis, setcountDis] = useState(0);
+  const [inputVal, setinputVal] = useState("");
 
-  function handleAddNum() {
+  function handleAddNum(e) {
+    e.preventDefault();
     setcountDis((count) => countDis + increment);
   }
 
-  function handleSubNum() {
+  function handleSubNum(e) {
+    e.preventDefault();
     setcountDis((count) => countDis - increment);
   }
 
-  function handleIncrementUp() {
+  function handleIncrementUp(e) {
+    e.preventDefault();
     setIncrement((i) => i + 1);
   }
-  function handleIncrementDown() {
+  function handleIncrementDown(e) {
+    e.preventDefault();
     if (increment >= 1) setIncrement((i) => i - 1);
   }
 
-  function handleReset() {
+  function handleReset(e) {
+    e.preventDefault();
     setIncrement(1);
     setcountDis(0);
   }
 
-  // function reset() {
-  //   setIncrement((i) => (i = increment));
-  //   setcountDis((c) => (c = countDis));
-  // }
+  function handleAddInput(e) {
+    e.preventDefault();
+    setcountDis(inputVal + countDis);
+    setinputVal("");
+  }
+
+  function handleSubInput(e) {
+    e.preventDefault();
+    setcountDis(countDis - inputVal);
+    setinputVal("");
+  }
 
   return (
-    <div>
+    <form style={{ textAlign: "center" }}>
       <div>
         <span>
           {" "}
@@ -59,9 +72,18 @@ function Counter() {
           <button onClick={handleIncrementUp}>+</button>
         </span>
       </div>
-      {/* <button onClick={reset}>RESET</button> */}
+      <div>
+        <button onClick={handleSubInput}>-</button>
+        <input
+          value={inputVal}
+          onChange={(e) => setinputVal(+e.target.value)}
+          placeholder="Subtract or Add"
+        ></input>
+        <button onClick={handleAddInput}> +</button>
+      </div>
+
       <p> {countDis}</p>
       <button onClick={handleReset}>RESET</button>
-    </div>
+    </form>
   );
 }
