@@ -37,18 +37,17 @@ function Counter() {
     e.preventDefault();
     setIncrement(1);
     setcountDis(0);
+    setinputVal("");
   }
 
   function handleAddInput(e) {
     e.preventDefault();
     setcountDis(inputVal + countDis);
-    setinputVal("");
   }
 
   function handleSubInput(e) {
     e.preventDefault();
     setcountDis(countDis - inputVal);
-    setinputVal("");
   }
 
   return (
@@ -83,7 +82,9 @@ function Counter() {
       </div>
 
       <p> {countDis}</p>
-      <button onClick={handleReset}>RESET</button>
+      {increment !== 1 || inputVal !== "" ? (
+        <button onClick={handleReset}>RESET</button>
+      ) : null}
     </form>
   );
 }
